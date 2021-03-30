@@ -2,19 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@import '@fontsource/oswald';
+@import '@fontsource/ranchers';
+
+@layer base {
+  h1 {
+    @apply font-display text-4xl tracking-wide;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  p,
+  a,
+  li {
+    /* @apply font-body; */
+  }
+
+  html,
+  body {
+    @apply bg-black text-white;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@layer components {
+  .product-thumb {
+    @apply w-full cursor-pointer;
+  }
+  .nav-button {
+    @apply my-4 px-2 py-2 bg-yellow-900 text-yellow-100 text-lg md:text-3xl font-display tracking-widest rounded-lg;
+  }
 }
 
-* {
-  box-sizing: border-box;
+@layer utilities {
+  @variants group-hover {
+    .filter-hue {
+      filter: blur(1px);
+    }
+  }
 }

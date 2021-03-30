@@ -1,37 +1,50 @@
+import { gql } from 'graphql-request'
+import Image from 'next/link' //not working? might be better to source logo internally
 import Link from 'next/link'
 
 import { graphCmsClient } from '../lib/graphCmsClient'
-import { formatCurrencyValue } from '../lib/helper'
 
 export async function getStaticProps() {
-  const { products } = await graphCmsClient.request(`
-  {
-    products {
-      name
-      id
-      slug
-      price
+  const splashPageContent = await graphCmsClient.request(gql`
+    {
+      splashPages {
+        splashImage {
+          url
+          width
+          height
+        }
+        splashPageBlurb
+      }
     }
-  }
-`)
+  `)
   return {
     props: {
-      products: products.map((product) => ({
-        ...product,
-        formattedPrice: formatCurrencyValue({ value: product.price })
-      }))
+      splashPageContent
     }
   }
 }
 
-// look into revalidate props https://nextjs.org/docs/basic-features/data-fetching#incremental-static-regeneration
+const splashPage = ({ splashPageContent }) => {
+  const [content] = splashPageContent.splashPages
+  const img = content.splashImage
+  console.log(img.url)
 
-export default function Index({ products }) {
-  return products.map(({ name, id, slug }) => (
-    <div key={id}>
-      <Link href={`/products/${slug}`}>
-        <a>{name}</a>
+  return (
+    <div className="flex justify-center items-center h-screen w-screen">
+      <Link href="/products">
+        <div className="m-2 cursor-pointer flex flex-col items-center justify-center">
+          <h1>EMPTY THREATS</h1>
+          <p>{content.splashPageBlurb}</p>
+          <img
+            src={img.url}
+            width={img.width}
+            height={img.height}
+            className="lg:w-1/2"
+          />
+        </div>
       </Link>
     </div>
-  ))
+  )
 }
+
+export default splashPage

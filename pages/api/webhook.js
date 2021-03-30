@@ -6,6 +6,7 @@ import { graphCmsMutationClient } from '../../lib/graphCmsClient'
 
 export default async (req, res) => {
   const event = req.body
+  console.log(event)
 
   const session = await stripe.checkout.sessions.retrieve(
     event.data.object.id,
@@ -49,29 +50,46 @@ export default async (req, res) => {
   console.log(order)
 
   // update product info to flip availability
-
-  const updateAvailability = await graphCmsMutationClient.request(
-    gql`
-      mutation UpdateProductMutation(
-        $where: ProductWhereUniqueInput!
-        $data: ProductUpdateInput!
-      ) {
-        updateProduct(where: $where, data: $data) {
-          name
-          id
+  if (event) {
+    const updateAvailability = await graphCmsMutationClient.request(
+      gql`
+        mutation UpdateProductMutation(
+          $where: ProductWhereUniqueInput!
+          $data: ProductUpdateInput!
+        ) {
+          updateProduct(where: $where, data: $data) {
+            name
+            id
+            available
+          }
+        }
+      `,
+      {
+        where: {
+          slug: line_items.map((li) => li.price.product.metadata.productSlug)[0]
+        },
+        data: {
+          available: false
         }
       }
-    `,
-    {
-      where: {
-        slug: line_items.map((li) => li.price.product.metadata.productSlug)[0]
-      },
-      data: {
-        available: false
-      }
-    }
-  )
-  console.log(updateAvailability)
+    )
+  }
+  // const publishAvailability = await graphCmsMutationClient.request(
+  //   gql`
+  //     mutation {
+  //       publishProduct(
+  //         where: {
+  //           slug: line_items.map((li) => li.price.product.metadata.productSlug)[0]
+  //         },
+  //         to: PUBLISHED
+  //       ) {
+  //         stage
+  //       }
+  //     }
+  //   `
+  // )
+  console.log('update product', updateAvailability)
+  // console.log('publish update', publishAvailability)
 
   res.json({ message: 'success' })
 }

@@ -1,7 +1,10 @@
+import { useContext, useState } from 'react'
 import { gql } from 'graphql-request'
 import Link from 'next/link'
 import Image from 'next/image'
 import { loadStripe } from '@stripe/stripe-js'
+import PayBtn from '../../components/PayBtn'
+import CartContext from '../../components/CartContext'
 
 import { formatCurrencyValue } from '../../lib/helper'
 import { graphCmsClient } from '../../lib/graphCmsClient'
@@ -17,6 +20,7 @@ export async function getStaticProps({ params }) {
           name
           slug
           price
+          available
           images {
             id
             url
@@ -57,55 +61,71 @@ export async function getStaticPaths() {
   }
 }
 
-const PayBtn = ({ slug, stripePromise }) => {
-  const handleClick = async (e) => {
-    e.preventDefault()
-    const stripe = await stripePromise
-
-    // create checkout session
-    const session = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        slug: slug
-      })
-    }).then((res) => res.json())
-
-    console.log(session)
-    await stripe.redirectToCheckout({
-      sessionId: session.id
-    })
-  }
-  return (
-    <div>
-      <button onClick={handleClick}>Pay</button>
-    </div>
-  )
-}
-
 const Product = ({ product }) => {
-  const { name, formattedPrice, images, slug } = product
+  const [error, setError] = useState(false)
+  const { cart, setCart } = useContext(CartContext)
+  const { name, formattedPrice, images, slug, description, available } = product
+
+  const addToCart = () => {
+    try {
+      cart.forEach((item) => {
+        if (item.slug === slug) {
+          throw new Error('Cannot have duplicate items in cart')
+        }
+      })
+      setCart([...cart, product])
+    } catch (e) {
+      setError(true)
+    }
+  }
+
   return (
-    <div>
-      <Link href="/">Back</Link>
-      <PayBtn slug={slug} stripePromise={stripePromise} />
-      <h1>{name}</h1>
-      <p>{formattedPrice}</p>
-      {images
-        ? images.map((img) => {
-            return (
-              <Image
-                src={img.url}
-                key={img.id}
-                width={img.width}
-                height={img.height}
+    <>
+      <div className="flex flex-col items-center lg:mx-64">
+        <div className="flex flex-col items-center">
+          {images
+            ? images.map((img) => {
+                return (
+                  <div key={img.id}>
+                    <Image
+                      src={img.url}
+                      width={img.width}
+                      height={img.height}
+                      className="object-cover rounded-lg"
+                    />
+                    <br />
+                  </div>
+                )
+              })
+            : null}
+        </div>
+        <div className="sticky bottom-0 bg-black w-full py-4">
+          {error ? (
+            <div className="bg-red-600 py-2 flex justify-around items-center">
+              <p>Item already in Cart!</p>
+              <button className="p-1" onClick={() => setError(false)}>
+                <h1>x</h1>
+              </button>
+            </div>
+          ) : null}
+          <div className="flex justify-around items-center">
+            <div>
+              <h1>{name}</h1>
+              <p>{description}</p>
+            </div>
+            <button onClick={addToCart}>Add to Cart</button>
+            <div>
+              <p>{formattedPrice}</p>
+              <PayBtn
+                slug={slug}
+                stripePromise={stripePromise}
+                available={available}
               />
-            )
-          })
-        : null}
-    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
