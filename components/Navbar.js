@@ -18,7 +18,7 @@ const Navbar = () => {
           <a className="nav-button">SHOP</a>
         </Link>
 
-        <Link href="/commission">
+        <Link href="/custom">
           <a className="nav-button">CUSTOM</a>
         </Link>
 
@@ -30,7 +30,9 @@ const Navbar = () => {
           <FaShoppingCart />
         </a>
       </nav>
-      {cartOpen ? <ShoppingCart setCartOpen={setCartOpen} /> : null}
+      {cartOpen ? (
+        <ShoppingCart cartOpen={cartOpen} setCartOpen={setCartOpen} />
+      ) : null}
     </>
   )
 }

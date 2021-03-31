@@ -21,6 +21,7 @@ export async function getStaticProps({ params }) {
           slug
           price
           available
+          id
           images {
             id
             url
@@ -108,14 +109,24 @@ const Product = ({ product }) => {
               </button>
             </div>
           ) : null}
-          <div className="flex justify-around items-center">
+          <div className="flex flex-col items-start md:flex-row md:justify-around items-center">
             <div>
-              <h1>{name}</h1>
-              <p>{description}</p>
+              <h1 className="text-2xl">
+                {name} <span className="ml-4">{formattedPrice}</span>
+              </h1>
+              <p className="my-4">{description}</p>
             </div>
-            <button onClick={addToCart}>Add to Cart</button>
             <div>
-              <p>{formattedPrice}</p>
+              {available ? (
+                <button
+                  className="bg-yellow-500 text-black px-2 py-1 hover:bg-blue-500 hover:text-white mx-2"
+                  disabled={!available}
+                  onClick={addToCart}
+                >
+                  Add to Cart
+                </button>
+              ) : null}
+
               <PayBtn
                 slug={slug}
                 stripePromise={stripePromise}

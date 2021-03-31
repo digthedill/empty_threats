@@ -9,8 +9,10 @@
     "lint": "prettier --write {*.js,**/**/*.js}"
   },
   "dependencies": {
+    "@fontsource/bree-serif": "^4.2.2",
     "@fontsource/oswald": "^4.2.2",
     "@fontsource/ranchers": "^4.2.2",
+    "@fontsource/roboto-slab": "^4.2.2",
     "@stripe/stripe-js": "^1.13.2",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
@@ -18,6 +20,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.2.0",
+    "react-transition-group": "^4.4.1",
     "stripe": "^8.139.0"
   },
   "devDependencies": {

@@ -3,14 +3,17 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      height: {
+        500: '500px'
+      },
       colors: {
         black: '#111',
         white: '#f4f4f4'
       }
     },
     fontFamily: {
-      body: ['Oswald'],
-      display: ['Ranchers']
+      display: ['Ranchers'],
+      body: ['Bree Serif']
     }
   },
   variants: {

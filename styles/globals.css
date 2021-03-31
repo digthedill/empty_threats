@@ -4,6 +4,8 @@
 
 @import '@fontsource/oswald';
 @import '@fontsource/ranchers';
+@import '@fontsource/bree-serif/';
+@import '@fontsource/roboto-slab';
 
 @layer base {
   h1 {
@@ -17,7 +19,7 @@
   p,
   a,
   li {
-    /* @apply font-body; */
+    @apply font-body;
   }
 
   html,
@@ -31,7 +33,20 @@
     @apply w-full cursor-pointer;
   }
   .nav-button {
-    @apply my-4 px-2 py-2 bg-yellow-900 text-yellow-100 text-lg md:text-3xl font-display tracking-widest rounded-lg;
+    @apply my-4 px-2 py-2 hover:bg-yellow-900 text-yellow-100 text-lg sm:text-2xl md:text-3xl font-display tracking-widest rounded-lg;
+  }
+
+  .custom-content-container {
+    @apply flex-col md:flex-row flex justify-center items-center w-full mb-4;
+  }
+  .custom-content-text {
+    @apply m-0 md:max-w-md md:mx-auto bg-yellow-100 text-blue-900 p-2 leading-loose text-lg h-500 object-contain;
+  }
+  .custom-text-wrapper {
+    @apply lg:w-1/2 my-4 md:my-0 max-w-sm;
+  }
+  .custom-content-img {
+    @apply lg:w-1/2 object-cover rounded-lg border border-8;
   }
 }
 
@@ -41,4 +56,31 @@
       filter: blur(1px);
     }
   }
+}
+
+/* ENTER TRANSITION */
+/* Declare transition start properties*/
+.slide-enter {
+  transform: translateX(-100vw);
+  opacity: 0;
+  position: absolute;
+}
+
+/* Declare transition properties */
+.slide-enter.slide-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 300ms linear 300ms;
+}
+
+/* EXIT TRANSITION */
+.slide-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-exit.slide-exit-active {
+  transform: translateX(100vw);
+  opacity: 0;
+  transition: all 300ms linear;
 }
