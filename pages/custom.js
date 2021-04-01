@@ -41,7 +41,7 @@ const custom = ({ customPageContent }) => {
 
   return (
     <div className="flex flex-col w-full items-center justify-center">
-      <div id="custom-page-content" className="bg-yellow-100 p-4 rounded-lg">
+      <div id="custom-page-content" className="p-4 rounded-lg">
         <div id="1" className="custom-content-container">
           <Image
             src={oneImage.url}
@@ -56,7 +56,9 @@ const custom = ({ customPageContent }) => {
         </div>
         <div id="2" className="custom-content-container">
           <div className="custom-text-wrapper order-last md:order-first">
-            <p className="custom-content-text">{twoText}</p>
+            <p className="custom-content-text text-left md:text-right">
+              {twoText}
+            </p>
           </div>
           <Image
             src={twoImage.url}

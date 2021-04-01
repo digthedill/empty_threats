@@ -2,9 +2,9 @@ import NewsletterSignUp from '../components/NewsletterSignUp'
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col p-4 items-center justify-center mt-40">
+    <footer className="flex flex-col p-4 items-center justify-center mt-24">
       <h3>Empty Threats LLC ©</h3>
-      <NewsletterSignUp />
+      {/* <NewsletterSignUp /> */}
       <a href="#">Instagram Link?</a>
     </footer>
   )

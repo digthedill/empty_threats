@@ -24,7 +24,7 @@
 
   html,
   body {
-    @apply bg-black text-white;
+    @apply bg-black text-yellow-100;
   }
 }
 
@@ -33,54 +33,29 @@
     @apply w-full cursor-pointer;
   }
   .nav-button {
-    @apply my-4 px-2 py-2 hover:bg-yellow-900 text-yellow-100 text-lg sm:text-2xl md:text-3xl font-display tracking-widest rounded-lg;
+    @apply my-4 px-2 py-2 hover:bg-yellow-900 text-lg sm:text-2xl md:text-3xl font-display tracking-widest rounded-lg;
   }
 
   .custom-content-container {
     @apply flex-col md:flex-row flex justify-center items-center w-full mb-4;
   }
   .custom-content-text {
-    @apply m-0 md:max-w-md md:mx-auto bg-yellow-100 text-blue-900 p-2 leading-loose text-lg h-500 object-contain;
+    @apply m-0 md:max-w-md md:mx-auto p-2 leading-loose text-lg text-2xl;
   }
   .custom-text-wrapper {
     @apply lg:w-1/2 my-4 md:my-0 max-w-sm;
   }
   .custom-content-img {
-    @apply lg:w-1/2 object-cover rounded-lg border border-8;
+    @apply lg:w-1/2 object-cover rounded-lg;
   }
 }
 
 @layer utilities {
   @variants group-hover {
     .filter-hue {
-      filter: blur(1px);
+      transform: scale(1.2, 1.2);
+      transition: 0.5s ease-in-out;
+      filter: brightness(0.8);
     }
   }
-}
-
-/* ENTER TRANSITION */
-/* Declare transition start properties*/
-.slide-enter {
-  transform: translateX(-100vw);
-  opacity: 0;
-  position: absolute;
-}
-
-/* Declare transition properties */
-.slide-enter.slide-enter-active {
-  transform: translateX(0);
-  opacity: 1;
-  transition: all 300ms linear 300ms;
-}
-
-/* EXIT TRANSITION */
-.slide-exit {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.slide-exit.slide-exit-active {
-  transform: translateX(100vw);
-  opacity: 0;
-  transition: all 300ms linear;
 }

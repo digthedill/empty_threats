@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import '../styles/globals.css'
+import { AnimateSharedLayout } from 'framer-motion'
 import Layout from '../components/Layout'
 
 import CartContext from '../components/CartContext'
@@ -14,9 +15,11 @@ function MyApp({ Component, pageProps }) {
   }
   return (
     <CartContext.Provider value={{ cart, setCart }}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <AnimateSharedLayout>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </AnimateSharedLayout>
     </CartContext.Provider>
   )
 }

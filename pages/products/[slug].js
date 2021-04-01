@@ -100,30 +100,33 @@ const Product = ({ product }) => {
               })
             : null}
         </div>
-        <div className="sticky bottom-0 bg-black w-full py-4">
+        <div className="sticky bottom-0 bg-black w-full ">
           {error ? (
             <div className="bg-red-600 py-2 flex justify-around items-center">
-              <p>Item already in Cart!</p>
+              <p>Item already in cart!</p>
               <button className="p-1" onClick={() => setError(false)}>
                 <h1>x</h1>
               </button>
             </div>
           ) : null}
-          <div className="flex flex-col items-start md:flex-row md:justify-around items-center">
+          <div className="flex justify-around items-center">
             <div>
-              <h1 className="text-2xl">
-                {name} <span className="ml-4">{formattedPrice}</span>
-              </h1>
-              <p className="my-4">{description}</p>
+              <div className="flex flex-col items-start  sm:space-x-8 sm:flex-row">
+                {' '}
+                {/**could get more specific about small screen size */}
+                <h1 className="text-2xl">{name}</h1>
+                <h1 className="text-2xl">{formattedPrice}</h1>
+              </div>
+              <p>{description}</p>
             </div>
-            <div>
+            <div className="flex">
               {available ? (
                 <button
                   className="bg-yellow-500 text-black px-2 py-1 hover:bg-blue-500 hover:text-white mx-2"
                   disabled={!available}
                   onClick={addToCart}
                 >
-                  Add to Cart
+                  Cart
                 </button>
               ) : null}
 
