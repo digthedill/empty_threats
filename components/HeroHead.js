@@ -1,15 +1,21 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const HeroHead = () => {
   return (
     <Link href="/">
-      <div className="min-w-screen  flex flex-col items-center text-2xl cursor-pointer">
-        <h1>EMPTY THREATS</h1>
-        <img
-          className="object-contain w-screen"
-          src="https://res.cloudinary.com/dilldog-industries/image/upload/w_900,h_80,c_crop/v1612841663/caexyv8gihipsfs1ejyi.png"
-          alt="hero logo"
+      <div className="relative min-w-screen flex justify-center items-center cursor-pointer h-60">
+        <Image
+          alt="bg-tyedye"
+          src="/swirls.jpg"
+          layout="fill"
+          objectFit="cover"
+          quality={100}
+          className="z-0"
         />
+        <h1 className="text-5xl sm:text-6xl md:text-8xl tracking-wide z-10">
+          EMPTY THREATS
+        </h1>
       </div>
     </Link>
   )
