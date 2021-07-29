@@ -41,9 +41,16 @@ const splashPage = ({ splashPageContent }) => {
               quality={100}
               className="opacity-50"
             />
-            <div className="relative flex flex-col h-screen w-screen justify-center items-center">
-              <h1 className="md:text-8xl">EMPTY THREATS</h1>
-              <p>{content.splashPageBlurb}</p>
+            <div className="relative flex flex-col h-screen w-screen justify-center items-center px-4">
+              <div>
+                <h1 className="text-6xl md:text-8xl">
+                  EMPTY
+                  <br /> THREATS
+                </h1>
+                <p className="text-xl w-40 md:w-64 ml-2">
+                  {content.splashPageBlurb}
+                </p>
+              </div>
             </div>
           </div>
         </div>

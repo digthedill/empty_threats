@@ -33,7 +33,7 @@
     @apply w-full cursor-pointer;
   }
   .nav-button {
-    @apply my-4 px-2 py-2 hover:bg-yellow-900 text-lg sm:text-2xl md:text-3xl font-display tracking-widest rounded-lg;
+    @apply my-4 px-2 py-2 hover:bg-yellow-100 hover:text-black text-lg sm:text-2xl md:text-3xl font-display tracking-widest rounded-lg;
   }
 
   .custom-content-container {
@@ -53,8 +53,8 @@
 @layer utilities {
   @variants group-hover {
     .filter-hue {
-      transform: scale(1.2, 1.2);
-      transition: 0.5s ease-in-out;
+      transform: scale(1.01, 1.01);
+      transition: 0.3s ease-in-out;
       filter: brightness(0.8);
     }
   }
