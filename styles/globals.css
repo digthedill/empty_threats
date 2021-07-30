@@ -40,7 +40,7 @@
     @apply flex-col md:flex-row flex justify-center items-center w-full mb-4;
   }
   .custom-content-text {
-    @apply m-0 md:max-w-md md:mx-auto p-2 leading-loose text-lg text-2xl;
+    @apply m-0 md:max-w-md md:mx-8 p-2 leading-6 md:leading-8 text-xl md:text-2xl;
   }
   .custom-text-wrapper {
     @apply lg:w-1/2 my-4 md:my-0 max-w-sm;

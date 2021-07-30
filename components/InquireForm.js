@@ -73,7 +73,7 @@ const InquireForm = () => {
         <button
           type="submit"
           disabled={!captchaChecked}
-          className="my-2 p-4 rounded bg-yellow-100 disabled:opacity-70 disabled:cursor-not-allowed"
+          className="my-2 p-4 rounded bg-yellow-100 disabled:opacity-80 disabled:cursor-not-allowed"
         >
           Submit
         </button>

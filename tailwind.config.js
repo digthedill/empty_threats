@@ -22,5 +22,5 @@ module.exports = {
       cursor: ['disabled']
     }
   },
-  plugins: [require('tailwindcss-textshadow')]
+  plugins: []
 }
