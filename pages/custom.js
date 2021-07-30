@@ -25,7 +25,8 @@ export async function getStaticProps() {
   return {
     props: {
       customPageContent
-    }
+    },
+    revalidate: 25
   }
 }
 

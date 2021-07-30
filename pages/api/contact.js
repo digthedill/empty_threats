@@ -44,7 +44,7 @@ export default async function (req, res) {
 
   const mailData = {
     from: process.env.BURNER_EMAIL,
-    to: 'dillon@dkelley.dev', //change to dj email
+    to: 'deejaydodd@gmail.com', //change to dj email
     subject: `New Message From: ${req.body.name}`,
     text: req.body.message + ' | Sent from: ' + req.body.email,
     html: `<div>${req.body.message}</div><p>Sent from:
