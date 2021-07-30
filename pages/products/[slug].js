@@ -38,7 +38,8 @@ export async function getStaticProps({ params }) {
       product: {
         ...product,
         formattedPrice: formatCurrencyValue({ value: product.price })
-      }
+      },
+      revalidate: 25
     }
   }
 }

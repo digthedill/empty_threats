@@ -37,7 +37,6 @@ export async function getStaticProps() {
 export default function Index({ products }) {
   return (
     <>
-      {' '}
       <ProductGallery products={products} />
     </>
   )
