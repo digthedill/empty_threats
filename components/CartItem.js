@@ -9,16 +9,14 @@ const CartItem = ({ item, cart, setCart }) => {
     }
   }, [])
   return (
-    <div
-      key={item.id}
-      className="flex justify-between mx-4 items-center space-x-10 mb-1"
-    >
-      <div className="flex space-x-1 mb-2">
+    <div key={item.id} className="flex justify-between mx-4 items-center mb-1">
+      <div className="flex items-start space-x-3 md:space-x-4 mb-2">
         <Image
           src={item.images[0].url}
           width={100}
           height={100}
-          objectFit="cover rounded-lg"
+          objectFit="cover"
+          className="rounded-lg"
         />
         <div>
           <p>{item.name}</p>
@@ -27,7 +25,7 @@ const CartItem = ({ item, cart, setCart }) => {
       </div>
       <button
         onClick={() => removeFromCart(item.id)}
-        className="border px-1 hover:bg-red-500"
+        className="text-sm px-1 hover:text-red-500"
       >
         Remove
       </button>
