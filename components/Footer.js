@@ -8,7 +8,7 @@ const Footer = () => {
       <a
         href="https://www.instagram.com/empty__threats/"
         target="_blank"
-        className=" my-4 px-4 py-2 rounded-full bg-yellow-400 text-blue-600 hover:bg-transparent"
+        className=" my-4 px-4 py-2 rounded-full bg-yellow-600 text-black hover:bg-yellow-200"
       >
         Instagram
       </a>
