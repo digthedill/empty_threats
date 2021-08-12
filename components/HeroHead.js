@@ -7,7 +7,7 @@ const HeroHead = () => {
       <div className="relative min-w-screen flex justify-center items-center cursor-pointer h-60">
         <Image
           alt="bg-tyedye"
-          src="https://res.cloudinary.com/dilldog-industries/image/upload/c_fill,g_auto,h_350,w_1080/v1628781028/empty-threats/empty-threats-banner_fkcmnw.gif"
+          src="/banner.gif"
           layout="fill"
           objectFit="cover"
           quality={100}
