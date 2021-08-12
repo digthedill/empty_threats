@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter()
 
   if (router.asPath === '/') {
+    // add head and meta tags!!
     return <Component {...pageProps} />
   } else {
     return (
