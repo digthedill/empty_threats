@@ -1,6 +1,15 @@
-const PayBtn = ({ slug, stripePromise, available }) => {
+import ReactLoading from 'react-loading'
+
+const PayBtn = ({
+  slug,
+  stripePromise,
+  available,
+  purchasing,
+  setPurchasing
+}) => {
   const handleClick = async (e) => {
     e.preventDefault()
+    setPurchasing(true)
     const stripe = await stripePromise
 
     // create checkout session
@@ -19,7 +28,6 @@ const PayBtn = ({ slug, stripePromise, available }) => {
       sessionId: session.id
     })
   }
-
   const payBtn = (
     <button
       onClick={handleClick}
@@ -39,6 +47,9 @@ const PayBtn = ({ slug, stripePromise, available }) => {
       Sold Out
     </button>
   )
+  if (purchasing) {
+    return <ReactLoading type="bubbles" height="35px" width="35px" />
+  }
   return <>{available ? payBtn : soldOutBtn}</>
 }
 

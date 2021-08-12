@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react'
 import { gql } from 'graphql-request'
-import Link from 'next/link'
 import Image from 'next/image'
 import { loadStripe } from '@stripe/stripe-js'
 import PayBtn from '../../components/PayBtn'
@@ -65,6 +64,7 @@ export async function getStaticPaths() {
 
 const Product = ({ product }) => {
   const [error, setError] = useState(false)
+  const [purchasing, setPurchasing] = useState(false)
   const { cart, setCart } = useContext(CartContext)
   const { name, formattedPrice, images, slug, description, available } = product
 
@@ -93,9 +93,8 @@ const Product = ({ product }) => {
                       src={img.url}
                       width={img.width}
                       height={img.height}
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-lg mb-2"
                     />
-                    <br />
                   </div>
                 )
               })
@@ -112,13 +111,13 @@ const Product = ({ product }) => {
           ) : null}
           <div className="flex justify-around items-center">
             <div>
-              <div className="flex flex-col items-start  sm:space-x-8 sm:flex-row">
+              <div className="flex flex-col items-start mt-1 sm:space-x-8 sm:flex-row">
                 {' '}
                 {/**could get more specific about small screen size */}
-                <h1 className="text-2xl">{name}</h1>
-                <h1 className="text-2xl">{formattedPrice}</h1>
+                <h2 className="text-xl sm:text-2xl">{name}</h2>
+                <h3 className="text-xl sm:text-2xl">{formattedPrice}</h3>
               </div>
-              <p>{description}</p>
+              <p className="mb-2">{description}</p>
             </div>
             <div className="flex">
               {available ? (
@@ -132,6 +131,8 @@ const Product = ({ product }) => {
               ) : null}
 
               <PayBtn
+                setPurchasing={setPurchasing}
+                purchasing={purchasing}
                 slug={slug}
                 stripePromise={stripePromise}
                 available={available}

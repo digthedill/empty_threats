@@ -1,6 +1,11 @@
+import { useState } from 'react'
+import ReactLoading from 'react-loading'
+
 const CheckoutBtn = ({ cart, stripePromise }) => {
+  const [processing, setProcessing] = useState(false)
   const handleClick = async (e) => {
     e.preventDefault()
+    setProcessing(true)
     const stripe = await stripePromise
 
     // create checkout session
@@ -18,6 +23,10 @@ const CheckoutBtn = ({ cart, stripePromise }) => {
     return stripe.redirectToCheckout({
       sessionId: session.id
     })
+  }
+  // doesn't have a chance to show the loading animation
+  if (processing) {
+    return <ReactLoading type="bubbles" height="35px" width="35px" />
   }
 
   return (
