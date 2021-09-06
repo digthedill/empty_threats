@@ -7,7 +7,7 @@ const HeroHead = () => {
       <div className="relative min-w-screen flex justify-center items-center cursor-pointer h-60">
         <Image
           alt="bg-tyedye"
-          src="/banner.gif"
+          src="/loveless.jpg"
           layout="fill"
           objectFit="cover"
           quality={100}
